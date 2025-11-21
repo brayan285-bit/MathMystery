@@ -119,11 +119,6 @@ export const TeacherPanel: React.FC<TeacherPanelProps> = ({ user, onLogout }) =>
                 </div>
             </div>
             
-            {/* Stats - Fixed at bottom if desired or just part of flow. Here simplified to footer or separate section. 
-                Keeping it scrollable would imply putting it inside a scroll container, but for now let's keep it outside 
-                if it fits, or remove to save space. I will put it below the table but if screen is small, user scrolls main container? 
-                No, we used flex-1 on table. Let's put stats at bottom fixed-shrink.
-            */}
             <div className="flex-shrink-0 grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                  <div className="bg-gradient-to-r from-blue-900/50 to-slate-800 p-4 rounded-xl border border-slate-700 flex justify-between items-center">
                     <h3 className="text-gray-400 text-xs uppercase">Total Estudiantes</h3>

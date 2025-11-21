@@ -42,3 +42,10 @@ export interface GameState {
   topic: MathTopic | null;
   isPlaying: boolean;
 }
+
+// --- AI Features Types ---
+
+export interface SearchResult {
+  text: string;
+  sources: { uri: string; title: string }[];
+}

@@ -109,10 +109,25 @@ export const MockFirebase = {
   saveGameProgress: (userId: string, score: number, level: number, lives: number) => {
     const users = MockFirebase.getAllUsers();
     const index = users.findIndex(u => u.id === userId);
+    
     if (index !== -1) {
-        users[index].score = (users[index].score || 0) + score; // Accumulate score
-        // Ideally specific game session saving, but simplified here
+        // Ensure we are updating the existing user record properly
+        const updatedUser = {
+            ...users[index],
+            score: score,
+            level: level,
+            lives: lives
+        };
+        
+        users[index] = updatedUser;
         localStorage.setItem(USERS_KEY, JSON.stringify(users));
+        
+        // Update active session if it matches
+        const currentUser = MockFirebase.getCurrentUser();
+        if (currentUser && currentUser.id === userId) {
+            const updatedCurrentUser = { ...currentUser, score, level, lives };
+            localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(updatedCurrentUser));
+        }
     }
   }
 };
